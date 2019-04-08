@@ -577,19 +577,22 @@ class _singlefileMailbox(Mailbox):
     def __init__(self, path, factory=None, create=True):
         """Initialize a single-file mailbox."""
         Mailbox.__init__(self, path, factory, create)
-        try:
-            f = open(self._path, 'rb+')
-        except OSError as e:
-            if e.errno == errno.ENOENT:
-                if create:
-                    f = open(self._path, 'wb+')
+        if isinstance(path, io.IOBase):
+            self._file = path
+        else:
+            try:
+                f = open(self._path, 'rb+')
+            except OSError as e:
+                if e.errno == errno.ENOENT:
+                    if create:
+                        f = open(self._path, 'wb+')
+                    else:
+                        raise NoSuchMailboxError(self._path)
+                elif e.errno in (errno.EACCES, errno.EROFS):
+                    f = open(self._path, 'rb')
                 else:
-                    raise NoSuchMailboxError(self._path)
-            elif e.errno in (errno.EACCES, errno.EROFS):
-                f = open(self._path, 'rb')
-            else:
-                raise
-        self._file = f
+                    raise
+            self._file = f
         self._toc = None
         self._next_key = 0
         self._pending = False       # No changes require rewriting the file.

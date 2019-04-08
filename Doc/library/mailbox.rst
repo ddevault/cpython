@@ -443,12 +443,14 @@ Supported mailbox formats are Maildir, mbox, MH, Babyl, and MMDF.
 
 .. class:: mbox(path, factory=None, create=True)
 
-   A subclass of :class:`Mailbox` for mailboxes in mbox format. Parameter *factory*
-   is a callable object that accepts a file-like message representation (which
-   behaves as if opened in binary mode) and returns a custom representation. If
-   *factory* is ``None``, :class:`mboxMessage` is used as the default message
-   representation. If *create* is ``True``, the mailbox is created if it does not
-   exist.
+   A subclass of :class:`Mailbox` for mailboxes in mbox format. *path* is
+   either a :term:`path-like object` or a :term:`file-like object` to read or
+   write the mbox contents to or from. Parameter *factory* is a callable object
+   that accepts a file-like message representation (which behaves as if opened
+   in binary mode) and returns a custom representation. If *factory* is
+   ``None``, :class:`mboxMessage` is used as the default message
+   representation. If *create* is ``True``, the mailbox is created if it does
+   not exist.
 
    The mbox format is the classic format for storing mail on Unix systems. All
    messages in an mbox mailbox are stored in a single file with the beginning of
@@ -633,12 +635,14 @@ Supported mailbox formats are Maildir, mbox, MH, Babyl, and MMDF.
 
 .. class:: Babyl(path, factory=None, create=True)
 
-   A subclass of :class:`Mailbox` for mailboxes in Babyl format. Parameter
-   *factory* is a callable object that accepts a file-like message representation
-   (which behaves as if opened in binary mode) and returns a custom representation.
-   If *factory* is ``None``, :class:`BabylMessage` is used as the default message
-   representation. If *create* is ``True``, the mailbox is created if it does not
-   exist.
+   A subclass of :class:`Mailbox` for mailboxes in Babyl format. *path* is
+   either a :term:`path-like object` or a :term:`file-like object` to read or
+   write the mbox contents to or from. Parameter *factory* is a callable object
+   that accepts a file-like message representation (which behaves as if opened
+   in binary mode) and returns a custom representation.  If *factory* is
+   ``None``, :class:`BabylMessage` is used as the default message
+   representation. If *create* is ``True``, the mailbox is created if it does
+   not exist.
 
    Babyl is a single-file mailbox format used by the Rmail mail user agent
    included with Emacs. The beginning of a message is indicated by a line
@@ -709,12 +713,14 @@ Supported mailbox formats are Maildir, mbox, MH, Babyl, and MMDF.
 
 .. class:: MMDF(path, factory=None, create=True)
 
-   A subclass of :class:`Mailbox` for mailboxes in MMDF format. Parameter *factory*
-   is a callable object that accepts a file-like message representation (which
-   behaves as if opened in binary mode) and returns a custom representation. If
-   *factory* is ``None``, :class:`MMDFMessage` is used as the default message
-   representation. If *create* is ``True``, the mailbox is created if it does not
-   exist.
+   A subclass of :class:`Mailbox` for mailboxes in MMDF format. *path* is
+   either a :term:`path-like object` or a :term:`file-like object` to read or
+   write the mbox contents to or from. Parameter *factory* is a callable object
+   that accepts a file-like message representation (which behaves as if opened
+   in binary mode) and returns a custom representation. If *factory* is
+   ``None``, :class:`MMDFMessage` is used as the default message
+   representation. If *create* is ``True``, the mailbox is created if it does
+   not exist.
 
    MMDF is a single-file mailbox format invented for the Multichannel Memorandum
    Distribution Facility, a mail transfer agent. Each message is in the same
